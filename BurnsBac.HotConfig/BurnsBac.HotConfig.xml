@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BurnsBac.HotConfig</name>
+    </assembly>
+    <members>
+        <member name="T:BurnsBac.HotConfig.ConfigSettingBase">
+            <summary>
+            Single setting from the settings.json file. This is the UI item base class.
+            </summary>
+        </member>
+        <member name="F:BurnsBac.HotConfig.ConfigSettingBase._settingsItem">
+            <summary>
+            Underlying setting.
+            </summary>
+        </member>
+        <member name="M:BurnsBac.HotConfig.ConfigSettingBase.#ctor(BurnsBac.HotConfig.Setting)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BurnsBac.HotConfig.ConfigSettingBase"/> class.
+            </summary>
+            <param name="item">Item source.</param>
+        </member>
+        <member name="P:BurnsBac.HotConfig.ConfigSettingBase.CurrentValue">
+            <inheritdoc />
+        </member>
+        <member name="P:BurnsBac.HotConfig.ConfigSettingBase.Display">
+            <inheritdoc />
+        </member>
+        <member name="P:BurnsBac.HotConfig.ConfigSettingBase.InputType">
+            <inheritdoc />
+        </member>
+        <member name="P:BurnsBac.HotConfig.ConfigSettingBase.IsModified">
+            <summary>
+            Gets or sets a value indicating whether this setting has been changed.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.ConfigSettingBase.Key">
+            <inheritdoc />
+        </member>
+        <member name="M:BurnsBac.HotConfig.ConfigSettingBase.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="M:BurnsBac.HotConfig.ConfigSettingBase.ToSettingsItem">
+            <summary>
+            Converts back to a json setttings item.
+            </summary>
+            <returns>Underlying setting object.</returns>
+        </member>
+        <member name="T:BurnsBac.HotConfig.ConfigSettingItem">
+            <summary>
+            For a single setting from the settings.json file that can have multiple values, this
+            is a container for one of those multiple values.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.ConfigSettingItem.KeyInt">
+            <summary>
+            Gets or sets the primary key, as an int. Optional.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.ConfigSettingItem.Key">
+            <summary>
+            Gets or sets the data source key. This (selected value) should end up getting saved as <see cref="P:BurnsBac.HotConfig.IConfigSetting.CurrentValue"/>.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.ConfigSettingItem.Display">
+            <summary>
+            Gets or sets the display text, e.g., in a combo box.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.ConfigSettingItem.Data">
+            <summary>
+            Gets or sets optional data object associated with this value.
+            </summary>
+        </member>
+        <member name="T:BurnsBac.HotConfig.DataSource.IConfigDataProvider">
+            <summary>
+            Interface for skin json settings dropdown source.
+            </summary>
+        </member>
+        <member name="T:BurnsBac.HotConfig.DataSource.IConfigDataProviderOnce">
+            <summary>
+            Interface for skin json settings dropdown source. Data is only queried and supplied once.
+            </summary>
+        </member>
+        <member name="M:BurnsBac.HotConfig.DataSource.IConfigDataProviderOnce.FetchData">
+            <summary>
+            Retrieves data to show end user.
+            </summary>
+            <returns>Key value pairs to be passed to dropdown.</returns>
+        </member>
+        <member name="T:BurnsBac.HotConfig.DataSource.IConfigDataProviderPoll">
+            <summary>
+            Interface for skin json settings dropdown source. Data is acquired through some kind of ongoing process. New items
+            are added to the collection as discovered.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.DataSource.IConfigDataProviderPoll.DataItems">
+            <summary>
+            Gets or sets the observable collection of data items.
+            </summary>
+        </member>
+        <member name="M:BurnsBac.HotConfig.DataSource.IConfigDataProviderPoll.Start">
+            <summary>
+            Begins acquiring data to populate items collection.
+            </summary>
+        </member>
+        <member name="M:BurnsBac.HotConfig.DataSource.IConfigDataProviderPoll.Stop">
+            <summary>
+            Stops acquiring items to populate collection.
+            </summary>
+        </member>
+        <member name="T:BurnsBac.HotConfig.Error.InvalidConfiguration">
+            <summary>
+            Exception when reading settings/configuration file.
+            </summary>
+        </member>
+        <member name="M:BurnsBac.HotConfig.Error.InvalidConfiguration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BurnsBac.HotConfig.Error.InvalidConfiguration"/> class.
+            </summary>
+        </member>
+        <member name="M:BurnsBac.HotConfig.Error.InvalidConfiguration.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BurnsBac.HotConfig.Error.InvalidConfiguration"/> class.
+            </summary>
+            <param name="message">Exception message.</param>
+        </member>
+        <member name="M:BurnsBac.HotConfig.Error.InvalidConfiguration.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BurnsBac.HotConfig.Error.InvalidConfiguration"/> class.
+            </summary>
+            <param name="message">Exception message.</param>
+            <param name="innerException">Inner exception.</param>
+        </member>
+        <member name="M:BurnsBac.HotConfig.Error.InvalidConfiguration.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BurnsBac.HotConfig.Error.InvalidConfiguration"/> class.
+            </summary>
+            <param name="info">SerializationInfo.</param>
+            <param name="context">StreamingContext.</param>
+        </member>
+        <member name="T:BurnsBac.HotConfig.IConfigSetting">
+            <summary>
+            Single setting from the settings.json file. This is the UI item interface.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.IConfigSetting.Key">
+            <summary>
+            Gets settings key name.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.IConfigSetting.Display">
+            <summary>
+            Gets text to show to user.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.IConfigSetting.InputType">
+            <summary>
+            Gets the type of input.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.IConfigSetting.CurrentValue">
+            <summary>
+            Gets or sets the current value.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.IConfigSetting.IsModified">
+            <summary>
+            Gets or sets a value indicating whether the value has changed.
+            </summary>
+        </member>
+        <member name="T:BurnsBac.HotConfig.InputTypes">
+            <summary>
+            Skin config supported input types.
+            </summary>
+        </member>
+        <member name="F:BurnsBac.HotConfig.InputTypes.Unknown">
+            <summary>
+            Default/unknown.
+            </summary>
+        </member>
+        <member name="F:BurnsBac.HotConfig.InputTypes.Textbox">
+            <summary>
+            Textbox.
+            </summary>
+        </member>
+        <member name="F:BurnsBac.HotConfig.InputTypes.Dropdown">
+            <summary>
+            Dropdown list.
+            </summary>
+        </member>
+        <member name="T:BurnsBac.HotConfig.InputTypesConverter">
+            <summary>
+            Converts <see cref="T:BurnsBac.HotConfig.InputTypes"/>.
+            </summary>
+        </member>
+        <member name="M:BurnsBac.HotConfig.InputTypesConverter.InputTypeToString(BurnsBac.HotConfig.InputTypes)">
+            <summary>
+            Converts from <see cref="T:BurnsBac.HotConfig.InputTypes"/> to <see cref="T:System.String"/>.
+            </summary>
+            <param name="t">Enum to convert.</param>
+            <returns>String.</returns>
+        </member>
+        <member name="M:BurnsBac.HotConfig.InputTypesConverter.StringToInputTypes(System.String)">
+            <summary>
+            Converts from <see cref="T:System.String"/> to <see cref="T:BurnsBac.HotConfig.InputTypes"/>.
+            </summary>
+            <param name="s">String to convert.</param>
+            <returns>Enum.</returns>
+        </member>
+        <member name="T:BurnsBac.HotConfig.Setting">
+            <summary>
+            Single setting from the settings.json file. This is the serializable implementation.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.Setting.Key">
+            <summary>
+            Gets or sets settings key name.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.Setting.Display">
+            <summary>
+            Gets or sets text to show to user.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.Setting.Input">
+            <summary>
+            Gets or sets the type of input.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.Setting.Datasource">
+            <summary>
+            Gets or sets the datasource type name.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.Setting.DatasourceAssembly">
+            <summary>
+            Gets or sets the datasource assembly name.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.Setting.CurrentValue">
+            <summary>
+            Gets or sets the current value.
+            </summary>
+        </member>
+        <member name="M:BurnsBac.HotConfig.Setting.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:BurnsBac.HotConfig.Setting.Clone">
+            <summary>
+            Creates a copy of the current item.
+            </summary>
+            <returns>Copy.</returns>
+        </member>
+        <member name="T:BurnsBac.HotConfig.SettingsCollection">
+            <summary>
+            Parent collection from the settings.json file. This is the serializable implementation.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.SettingsCollection.Items">
+            <summary>
+            Gets or sets list of settings.
+            </summary>
+        </member>
+        <member name="M:BurnsBac.HotConfig.SettingsCollection.FromFile(System.String)">
+            <summary>
+            Loads settings from file.
+            </summary>
+            <param name="path">Path of file to load.</param>
+            <returns>Parsed settings.</returns>
+        </member>
+        <member name="M:BurnsBac.HotConfig.SettingsCollection.SaveChanges">
+            <summary>
+            Writes current object back to the settings file.
+            </summary>
+        </member>
+        <member name="M:BurnsBac.HotConfig.SettingsCollection.ToSettingsDictionary">
+            <summary>
+            Converts settings to dictionary.
+            </summary>
+            <returns>Dictionary of Key,CurrentValue pairs.</returns>
+        </member>
+        <member name="T:BurnsBac.HotConfig.TypeResolver">
+            <summary>
+            Core of this library. Instantiates correct hw/ui types from skin xml. Resolves
+            data sources from skin config json.
+            </summary>
+        </member>
+        <member name="F:BurnsBac.HotConfig.TypeResolver._configDataProviderTypes">
+            <summary>
+            List of types of known config data providers.
+            </summary>
+        </member>
+        <member name="F:BurnsBac.HotConfig.TypeResolver._configDataProvidersLoaded">
+            <summary>
+            Whether or not data providers have already been loaded.
+            </summary>
+        </member>
+        <member name="P:BurnsBac.HotConfig.TypeResolver.ConfigDataProvidersDirectory">
+            <summary>
+            Gets or sets directory to load assemblies containg data providers from.
+            </summary>
+        </member>
+        <member name="M:BurnsBac.HotConfig.TypeResolver.GetConfigDataProviderType(System.String,System.String)">
+            <summary>
+            Resolves type name and assembly name to a type from the list
+            of known data provider types.
+            </summary>
+            <param name="shortTypeName">Type name without assembly or version.</param>
+            <param name="assemblyName">Name of hosting assembly.</param>
+            <returns>Type. First() is called, so this will throw an exception if not found.</returns>
+        </member>
+        <member name="M:BurnsBac.HotConfig.TypeResolver.CreateConfigDataProviderInstance(System.String,System.String)">
+            <summary>
+            Creates instance of skin data providor source.
+            </summary>
+            <param name="shortTypeName">Type name without assembly or version.</param>
+            <param name="assemblyName">Name of hosting assembly.</param>
+            <returns>New instance of data providor.</returns>
+        </member>
+        <member name="M:BurnsBac.HotConfig.TypeResolver.LoadConfigDataProviders">
+            <summary>
+            Loads assemblies from specified directory. Looks for items of type <see cref="T:BurnsBac.HotConfig.DataSource.IConfigDataProvider"/>.
+            This can only be performed once.
+            </summary>
+        </member>
+    </members>
+</doc>
